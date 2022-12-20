@@ -49,8 +49,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         powrot.setOnDateChangeListener { powrot, i, i2, i3 ->
-            rok_p = (i + 1)
-            mies_p = i2
+            rok_p = i
+            mies_p = (i2 + 1)
             dzien_p = i3
             data_p = dzien_p.toString() + " " + mies_p.toString() + " " + rok_p.toString()
         }
@@ -58,33 +58,58 @@ class MainActivity : AppCompatActivity() {
         var pay = findViewById<Button>(R.id.confirm)
 
         pay.setOnClickListener {
+            var roznicadni = dzien_p - dzien_w
+            var roznicamies = mies_p - mies_w
+            var roznicarok = rok_p - rok_w
 
-            if (dzien_w < dzien && mies_w == miesiac && rok_w == year)
+            if (roznicamies > 0 && mies_p % 2 == 0 && mies_p != 2 && rok_p % 4 != 0)
+            {
+                roznicadni += (31 * mies_p)
+            }
+            else if (roznicamies > 0 && mies_p % 2 != 0 && mies_p != 2 && rok_p % 4 != 0)
+            {
+                roznicadni += (30 * mies_p)
+            }
+            else if (roznicamies > 0 && mies_p == 2 && rok_p % 4 != 0)
+            {
+                roznicadni += (28 * mies_p)
+            }
+            else if (roznicamies > 0 && mies_p == 2 && rok_p % 4 == 0)
+            {
+                roznicadni += (29 * mies_p)
+            }
+            else if (roznicarok > 0 && rok_p % 4 != 0)
+            {
+                roznicadni += (365 * rok_p)
+            }
+            else if (roznicarok > 0 && rok_p % 4 == 0)
+            {
+                roznicadni += (366 * rok_p)
+            }
+            else
+            {
+                roznicadni = dzien_p - dzien_w
+            }
+
+            if (dzien_w < dzien)
             {
                 var toast = Toast.makeText(applicationContext,"Nie można wprowadzić daty wyjazdu wcześniejszej niż teraz",Toast.LENGTH_SHORT)
                 toast.show()
             }
-            if (rok_w > rok_p + 2)
+            else if (roznicadni < 0)
+            {
+                var toast = Toast.makeText(applicationContext,"Nie można wprowadzić daty wyjazdu wcześniejszej niż teraz",Toast.LENGTH_SHORT)
+                toast.show()
+            }
+            else if (roznicadni > 720)
             {
                 var toast = Toast.makeText(applicationContext,"Termin wyjazdu ograniczony do 2 lat",Toast.LENGTH_SHORT)
                 toast.show()
             }
-
-            var len_d = dzien_p - dzien_w
-            if (mies_p > mies_w)
-            {
-                var il = mies_p - mies_w
-                len_d += 30 * il
+            else {
+                var wynik = Toast.makeText(applicationContext, "Różnica dni wynosi: " + roznicadni.toString(), Toast.LENGTH_LONG)
+                wynik.show()
             }
-            if (rok_p > rok_w) // Nie dziala
-            {
-                var ilo = rok_p - rok_w
-                len_d += 360 * ilo
-            }
-
-            var len:String = "Dni: " + len_d.toString()
-
-            findViewById<TextView>(R.id.textView).text = len
         }
     }
 }
