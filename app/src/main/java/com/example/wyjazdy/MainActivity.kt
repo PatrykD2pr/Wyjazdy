@@ -78,13 +78,10 @@ class MainActivity : AppCompatActivity() {
             {
                 roznicadni += (29 * mies_p)
             }
-            else if (roznicarok > 0 && rok_p % 4 != 0)
+            else if (mies_w == 12 && mies_p == 1 && year != rok_p)
             {
-                roznicadni += (365 * rok_p)
-            }
-            else if (roznicarok > 0 && rok_p % 4 == 0)
-            {
-                roznicadni += (366 * rok_p)
+                var roznica = dzien_w - dzien_p
+                roznicadni = dzien_w - roznica + 1
             }
             else
             {
@@ -110,7 +107,7 @@ class MainActivity : AppCompatActivity() {
                 var wynik = Toast.makeText(applicationContext, "Różnica dni wynosi: " + roznicadni.toString(), Toast.LENGTH_LONG)
                 wynik.show()
             }
-            // nie dziala rok
+            // nie dzialajacy rok
         }
     }
 }
