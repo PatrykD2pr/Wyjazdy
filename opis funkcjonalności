@@ -1,0 +1,11 @@
+Start ()
+onCreate (ustawienie zmiennych oraz teraźniejszej daty)
+onStart (ustawienie domyślnej wartości wyjazdu oraz przyjazdu na datę teraźniejszą, wznowienie obliczeń oraz wznowienie funkcjonalności aplikacji)
+onResume (pola zostają wypełnione)
+Akt. działa (obliczenie różnicy dni oraz wyświetlenie liczby na ekranie po kliknięciu przycisku "Płatność"
+inna akt. na 1 planie (użytkownik ma możliwość wpisania miejscowości skąd oraz dokąd wyjeżdża *ta funkcja nie została podpięta pod żaden kod)
+onPause (program wykonuje obliczenia oraz zapisuje je, natomiast nie wyświetla wyników)
+onStop (aplikacja przerywa działanie obliczeń)
+proces "zabity" (aplikacja resetuje dane, zatrzymuje obliczenia oraz zeruje datę teraźniejszą)
+onDestroy (aplikacja kończy niewykonane obliczenia, nie wyświetlając ich na ekranie, następnie usuwa dane z pamięci aplikacj, zeruje daty i czyści pola aplikacji)
+Akt. zakończona ()
