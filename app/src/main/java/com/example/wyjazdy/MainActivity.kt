@@ -110,6 +110,7 @@ class MainActivity : AppCompatActivity() {
                 var wynik = Toast.makeText(applicationContext, "Różnica dni wynosi: " + roznicadni.toString(), Toast.LENGTH_LONG)
                 wynik.show()
             }
+            // nie dziala rok
         }
     }
 }
